@@ -12,8 +12,10 @@ public class Test {
     public static final String QUESTION3A = "I rarely hold a grudge, even against people who have badly wronged me.";
     public static final String QUESTION4X = "I feel reasonably satisfied with myself overall.";
     public static final String QUESTION5E = "I would feel afraid if I had to travel in bad weather conditions.";
-    public static final String QUESTION6H = "I wouldn't use flattery to get a raise or promotion at work, even if I thought it would succeed.";
-    public static final String QUESTION7O = "I'm interested in learning about the history and politics of other countries.";
+    public static final String QUESTION6H = "I wouldn't use flattery to get a raise or promotion at work, "
+            + "even if I thought it would succeed.";
+    public static final String QUESTION7O = "I'm interested in learning about the history and "
+            + "politics of other countries.";
 
 
     public void setHonestyHumility(int honestyHumility) {
