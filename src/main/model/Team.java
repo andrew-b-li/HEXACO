@@ -8,6 +8,11 @@ public class Team {
 
     public Team(String teamName) {
         this.teamName = teamName;
+        this.users = new ArrayList<User>();
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public String getTeamName() {
@@ -18,9 +23,7 @@ public class Team {
         this.users.add(user);
     }
 
-    @Override
-    public String toString() {
-        return teamName;
+    public ArrayList<User> getUsers() {
+        return users;
     }
-
 }

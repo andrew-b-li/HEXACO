@@ -1,7 +1,7 @@
 package ui;
 
+import model.Assessment;
 import model.Team;
-import model.Test;
 import model.User;
 
 import java.util.*;
@@ -14,7 +14,6 @@ public class PersonalityApp {
         runPersonality();
     }
 
-    //
     public void runPersonality() {
         System.out.println("Welcome to the Digital HEXACO personality test.");
         System.out.println("Current team list:");
@@ -27,8 +26,8 @@ public class PersonalityApp {
         String newUserName = keyboard.nextLine();
         while (!newUserName.equals("")) {
             User newUser = new User(newUserName);
-            Test newTest = new Test();
-            runTest(newUser, newTest);
+            Assessment newAssessment = new Assessment(0, 0, 0, 0, 0, 0);
+            runAssessment(newUser, newAssessment);
             keyboard.nextLine();
             System.out.println("Please enter a team member's name:");
             newUserName = keyboard.nextLine();
@@ -37,28 +36,28 @@ public class PersonalityApp {
         System.out.println(this.toString());
     }
 
-    public void runTest(User user, Test test) {
+    public void runAssessment(User user, Assessment assessment) {
         System.out.println("Please answer the following questions the the best of your ability:");
         System.out.println("1 = strongly disagree, 2 = disagree, 3 = neutral, 4 = agree, 5 = strongly agree");
-        System.out.println(Test.QUESTION2C);
+        System.out.println(Assessment.QUESTION2C);
         int question2CAnswer = keyboard.nextInt();
-        test.setConscientiousness(question2CAnswer);
-        System.out.println(Test.QUESTION3A);
+        assessment.setConscientiousness(question2CAnswer);
+        System.out.println(Assessment.QUESTION3A);
         int question3AAnswer = keyboard.nextInt();
-        test.setAgreeableness(question3AAnswer);
-        System.out.println(Test.QUESTION4X);
+        assessment.setAgreeableness(question3AAnswer);
+        System.out.println(Assessment.QUESTION4X);
         int question4XAnswer = keyboard.nextInt();
-        test.setExtraversion(question4XAnswer);
-        System.out.println(Test.QUESTION5E);
+        assessment.setExtraversion(question4XAnswer);
+        System.out.println(Assessment.QUESTION5E);
         int question5EAnswer = keyboard.nextInt();
-        test.setEmotionality(question5EAnswer);
-        System.out.println(Test.QUESTION6H);
+        assessment.setEmotionality(question5EAnswer);
+        System.out.println(Assessment.QUESTION6H);
         int question6HAnswer = keyboard.nextInt();
-        test.setHonestyHumility(question6HAnswer);
-        System.out.println(Test.QUESTION7O);
+        assessment.setHonestyHumility(question6HAnswer);
+        System.out.println(Assessment.QUESTION7O);
         int question7OAnswer = keyboard.nextInt();
-        test.setOpennessToExperience(question7OAnswer);
-        user.addTest(test);
+        assessment.setOpennessToExperience(question7OAnswer);
+        user.addAssessment(assessment);
     }
 
     @Override
