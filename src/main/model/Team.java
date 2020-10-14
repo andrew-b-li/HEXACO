@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Team {
     private String teamName;
-    private ArrayList<User> users;
+    private ArrayList<User> userList;
 
     public Team(String teamName) {
         this.teamName = teamName;
-        this.users = new ArrayList<User>();
+        this.userList = new ArrayList<User>();
     }
 
     public void setTeamName(String teamName) {
@@ -20,10 +20,29 @@ public class Team {
     }
 
     public void addUser(User user) {
-        this.users.add(user);
+        this.userList.add(user);
     }
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
+
+    @Override
+    public String toString() {
+        String list = this.getTeamName() + ": ";
+        if (!userList.isEmpty()) {
+            if (userList.size() == 1) {
+                User user = userList.get(0);
+                list = list + user.getUserName();
+            } else {
+                for (User user : userList) {
+                    list = list + user.getUserName() + ", ";
+                }
+                list = list.substring(0, list.length() - 2);
+            }
+        } else {
+            list = list.substring(0, list.length() - 1);
+        }
+        return list;
     }
 }
