@@ -1,7 +1,7 @@
 package model;
 
 /*
- * Represents a personality assessment
+ * Represents a personality assessment with scores for each HEXACO personality trait
  */
 public class Assessment {
     private int honestyHumility;
@@ -20,6 +20,8 @@ public class Assessment {
     public static final String QUESTION7O = "I'm interested in learning about the history and "
             + "politics of other countries.";
 
+    //Construct an Assessment
+    //Effects: Assigns scores to the six personality traits for the test
     public Assessment(int honest, int emotional, int extraverted, int agreeable, int conscientious, int open) {
         honestyHumility = honest;
         emotionality = emotional;

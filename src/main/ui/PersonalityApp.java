@@ -8,6 +8,7 @@ import java.util.*;
 
 /*
  * Represents the personality test app.
+ * Allows users to create teams, users, and assessments.
  */
 public class PersonalityApp {
     private ArrayList<Team> teamList = new ArrayList<>();
@@ -21,8 +22,9 @@ public class PersonalityApp {
         runPersonality();
     }
 
-    //EFFECTS: Prompts for user input. Allows users to create and access teams.
-    //          Allows users to create user profiles and complete assessments.
+    //Effects: Displays data for all current teams. Allows user to select a team to get information
+    //          associated with the team, or create a new team.
+    //          Allows users to view and create user profiles and run assessments.
     public void runPersonality() {
         System.out.println("Please enter your team name:");
         String teamName = keyboard.nextLine();
@@ -42,8 +44,9 @@ public class PersonalityApp {
         }
     }
 
-    //EFFECTS: Displays user data. Tuns a personality assessment and associates it with the correct user.
-    //          Prompts for another username
+    //Effects: Displays data for the requested user.
+    //          If requested, runs a personality assessment and associates it with the requested user.
+    //          Prompts for another username.
     public String displayUserAndAssessment(Team currentTeam, String userName) {
         User currentUser = currentTeam.userExists(userName);
         System.out.println("\nTeam member data:");

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /*
- * Represents a user
+ * Represents a user with a name and list of assessments
  */
 public class User {
     private String userName;
@@ -34,6 +34,7 @@ public class User {
         this.assessmentList.add(assessment);
     }
 
+    //Effects: Returns a String with the user's name and assessments
     @Override
     public String toString() {
         String list = this.getUserName() + ": ";

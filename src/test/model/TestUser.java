@@ -35,8 +35,6 @@ public class TestUser {
         assertEquals(testAssessment1, actualAssessment);
     }
 
-
-
     @Test
     void testToStringNoAssessments() {
          String actualString = testUser.toString();

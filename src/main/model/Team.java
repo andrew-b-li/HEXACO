@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /*
- * Represents a team
+ * Represents a team with a name and list of users.
  */
 public class Team {
     private String teamName;
@@ -33,7 +33,6 @@ public class Team {
     public void addUser(User user) {
         this.userList.add(user);
     }
-
 
     //Effects: If a username is already used by a User in the list of Users, return that user. Otherwise, return a
     //          new user with the given username.
