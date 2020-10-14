@@ -1,5 +1,8 @@
 package model;
 
+/*
+ * Represents a personality assessment
+ */
 public class Assessment {
     private int honestyHumility;
     private int emotionality;
@@ -98,6 +101,7 @@ public class Assessment {
         return opennessToExperience;
     }
 
+    //Effects: Returns a string containing the scores for each personality trait
     @Override
     public String toString() {
         return "H:" + honestyHumility + " E:" + emotionality + " X:" + extraversion + " A:" + agreeableness + " C:"

@@ -24,5 +24,6 @@ hope to connect my prior interests with computer science.
 -As a user, I want to be able to select a team and view the team members (Done)
 -As a user, I want to be able to add as many users (team members) as I want to a team (Done)
 -As a user, I want to be able to take a personality assessment, and have that data associated with me (Done)
--As a user, I want to be able to have multiple tests associated with me 
--As a user, I want to be able to view the members of a team and their most recent personality data
+-As a user, I want to be able to have multiple tests associated with me (Done)
+-As a user, I want to be able to view the tests associated with me (Done)
+-As a user, I want to be able to view the members of a team and their most recent personality data (In Progress)

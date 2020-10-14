@@ -15,7 +15,6 @@ public class TestTeam {
     String defaultTestTeam = "Default Test Team";
     Team testTeam = new Team(defaultTestTeam);
 
-
     @Test
     void testSetTeamName(){
         testTeam.setTeamName("Changed Test Team");
