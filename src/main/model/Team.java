@@ -27,6 +27,21 @@ public class Team {
         return userList;
     }
 
+    public User userExists(String userName) {
+        boolean userExists = false;
+        User currentUser = new User(userName);
+        for (User user: this.getUserList()) {
+            if (userName.equals(user.getUserName())) {
+                currentUser = user;
+                userExists = true;
+            }
+        }
+        if (!userExists) {
+            this.addUser(currentUser);
+        }
+        return currentUser;
+    }
+
     @Override
     public String toString() {
         String list = this.getTeamName() + ": ";

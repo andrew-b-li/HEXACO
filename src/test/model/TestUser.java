@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+ * Unit tests for the User class.
+ */
 public class TestUser {
     User testUser = new User("Default Test User");
     String defaultTestUser = "Default Test User";

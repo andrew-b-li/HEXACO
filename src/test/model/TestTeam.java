@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/*
+ * Unit tests for the Team class.
+ */
 public class TestTeam {
     User user1 = new User("User 1");
     User user2 = new User("User 2");
@@ -58,4 +60,20 @@ public class TestTeam {
         String expectedString = "Default Test Team: User 1, User 2";
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    void testUserExistsDoesExist(){
+        testTeam.addUser(user1);
+        String expectedUserName = "User 1";
+        assertEquals(user1, testTeam.userExists(expectedUserName));
+    }
+
+    @Test
+    void testUserExistsDoesNotExist(){
+        testTeam.addUser(user1);
+        User newUser = testTeam.userExists("User 2");
+
+        assertEquals( "User 2", newUser.getUserName());
+    }
+
 }

@@ -11,29 +11,55 @@ public class PersonalityApp {
     Scanner keyboard = new Scanner(System.in);
 
     public PersonalityApp() {
+        System.out.println("Welcome to the Digital HEXACO personality test.");
+        System.out.println("Team list:");
         runPersonality();
     }
 
     public void runPersonality() {
-        System.out.println("Welcome to the Digital HEXACO personality test.");
-        System.out.println("Current team list:");
-        System.out.println(this.toString());
+        for (Team team: teamList) {
+            team.getTeamName();
+        }
         System.out.println("Please enter your team name:");
         String teamName = keyboard.nextLine();
-        Team newTeam = new Team(teamName);
-        teamList.add(newTeam);
+        Team currentTeam = teamExists(teamName);
+        System.out.println("Your team:");
+        System.out.println(currentTeam.toString());
         System.out.println("Please enter a team member's name:");
-        String newUserName = keyboard.nextLine();
-        while (!newUserName.equals("")) {
-            User newUser = new User(newUserName);
-            Assessment newAssessment = new Assessment(0, 0, 0, 0, 0, 0);
-            runAssessment(newUser, newAssessment);
-            keyboard.nextLine();
-            System.out.println("Please enter a team member's name:");
-            newUserName = keyboard.nextLine();
+        String userName = keyboard.nextLine();
+        while (!userName.equals("")) {
+            userName = addUserAndAssessment(currentTeam, userName);
         }
-        System.out.println("Current team List:");
+        System.out.println("Team List:");
         System.out.println(this.toString());
+    }
+
+    public String addUserAndAssessment(Team currentTeam, String userName) {
+        User currentUser = currentTeam.userExists(userName);
+        Assessment newAssessment = new Assessment(0, 0, 0, 0, 0, 0);
+        runAssessment(currentUser, newAssessment);
+        System.out.println("Your team:");
+        System.out.println(currentTeam.toString());
+        keyboard.nextLine();
+        System.out.println("Please enter a team member's name:");
+        userName = keyboard.nextLine();
+        return userName;
+    }
+
+
+    public Team teamExists(String teamName) {
+        boolean teamExists = false;
+        Team currentTeam = new Team(teamName);
+        for (Team team: teamList) {
+            if (teamName.equals(team.getTeamName())) {
+                currentTeam = team;
+                teamExists = true;
+            }
+        }
+        if (!teamExists) {
+            teamList.add(currentTeam);
+        }
+        return currentTeam;
     }
 
     public void runAssessment(User user, Assessment assessment) {
@@ -58,6 +84,8 @@ public class PersonalityApp {
         int question7OAnswer = keyboard.nextInt();
         assessment.setOpennessToExperience(question7OAnswer);
         user.addAssessment(assessment);
+        System.out.println("The assessment is complete!");
+        System.out.println("");
     }
 
     @Override
