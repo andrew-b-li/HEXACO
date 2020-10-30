@@ -21,12 +21,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonReaderTest {
     Team testTeam1 = new Team("Test Team 1");
     User testUser1 = new User("Test User 1");
-    Assessment testAssessment1 = new Assessment(1,1,1,1,1,1);
-
+    Assessment testAssessment1 = new Assessment(1, 1, 1, 1, 1, 1);
     Team testTeam2 = new Team("Test Team 2");
     User testUser2 = new User("Test User 2");
-    Assessment testAssessment2 = new Assessment(2,2,2,2,2,2);
-    Assessment testAssessment3 = new Assessment(3,3,3,3,3,3);
+    Assessment testAssessment2 = new Assessment(2, 2, 2, 2, 2, 2);
+    Assessment testAssessment3 = new Assessment(3, 3, 3, 3, 3, 3);
+    Team testTeam3 = new Team("Test Team 3");
+    User testUser3 = new User("Test User 3");
+    Assessment testAssessment4 = new Assessment(4, 4, 4, 4, 4, 4);
 
 
     @Test
@@ -60,11 +62,15 @@ class JsonReaderTest {
             App expectedApp = new App();
             expectedApp.addTeam(testTeam1);
             expectedApp.addTeam(testTeam2);
-            testTeam1.addUser(testUser1);
-            testUser1.addAssessment(testAssessment1);
-            testTeam2.addUser(testUser2);
-            testUser2.addAssessment(testAssessment2);
-            testUser2.addAssessment(testAssessment3);
+            expectedApp.addTeam(testTeam3);
+            this.testTeam1.addUser(this.testUser1);
+            this.testUser1.addAssessment(this.testAssessment1);
+            this.testTeam2.addUser(this.testUser2);
+            this.testTeam2.addUser(this.testUser3);
+            this.testUser2.addAssessment(this.testAssessment2);
+            this.testUser2.addAssessment(this.testAssessment3);
+            this.testTeam3.addUser(this.testUser3);
+            this.testUser3.addAssessment(this.testAssessment4);
             assertEquals(expectedApp.toString(), actualApp.toString());
         } catch (IOException e) {
             fail("Couldn't read from file");

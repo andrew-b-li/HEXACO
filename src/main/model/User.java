@@ -57,6 +57,8 @@ public class User {
         return list;
     }
 
+    //Effects: Calls assessmentsToJson to return a list of Assessments
+    //associated with a User as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("User Name", userName);
@@ -64,6 +66,7 @@ public class User {
         return json;
     }
 
+    //Effects: Iterates through the Assessments in assessmentList and returns the information as a JSONArray
     private JSONArray assessmentsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Assessment assessment : assessmentList) {

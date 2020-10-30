@@ -28,17 +28,80 @@ class JsonWriterTest {
     Assessment testAssessment2 = new Assessment(2,2,2,2,2,2);
     Assessment testAssessment3 = new Assessment(3,3,3,3,3,3);
 
+    Team testTeam3 = new Team("Test Team 3");
+    User testUser3 = new User("Test User 3");
+    Assessment testAssessment4 = new Assessment(4,4,4,4,4,4);
+
+
+
     @BeforeEach
     void setup(){
         testTeam1.clearUsers();
         testTeam2.clearUsers();
+        testTeam3.clearUsers();
+
         testUser1.clearAssessments();
         testUser2.clearAssessments();
+        testUser3.clearAssessments();
+
         testTeam1.addUser(testUser1);
         testUser1.addAssessment(testAssessment1);
+
         testTeam2.addUser(testUser2);
+        testTeam2.addUser(testUser3);
         testUser2.addAssessment(testAssessment2);
         testUser2.addAssessment(testAssessment3);
+
+        testTeam3.addUser(testUser3);
+        testUser3.addAssessment(testAssessment4);
+
+    }
+
+    @Test
+    void testWriterInvalidFile() {
+        try {
+            App testApp = new App();
+            testApp.addTeam(testTeam1);
+            testApp.addTeam(testTeam2);
+            JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
+            writer.open();
+            fail("IOException was expected");
+        } catch (IOException e) {
+            // pass
+        }
+    }
+
+    @Test
+    void testWriterEmptyAppTest() {
+        try {
+            App testApp = new App();
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyApp.json");
+            writer.open();
+            writer.write(testApp);
+            writer.close();
+            JsonReader reader = new JsonReader("./data/testWriterEmptyApp.json");
+            App yourApp = reader.read();
+            assertEquals(testApp.toString(), yourApp.toString());
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testWriterPersonalityAppOneOfEach() {
+        try {
+            App testApp = new App();
+            testApp.addTeam(testTeam3);
+            JsonWriter writer = new JsonWriter("./data/testWriterAppOneOfEach.json");
+            writer.open();
+            writer.write(testApp);
+            writer.close();
+            JsonReader reader = new JsonReader("./data/testWriterAppOneOfEach.json");
+            App yourApp = reader.read();
+            assertEquals(testApp.toString(), yourApp.toString());
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
     }
 
     @Test
@@ -47,6 +110,7 @@ class JsonWriterTest {
             App testApp = new App();
             testApp.addTeam(testTeam1);
             testApp.addTeam(testTeam2);
+            testApp.addTeam(testTeam3);
             JsonWriter writer = new JsonWriter("./data/testWriterApp.json");
             writer.open();
             writer.write(testApp);

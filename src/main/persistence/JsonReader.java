@@ -32,6 +32,7 @@ public class JsonReader {
     }
 
     //Effects: reads source file as string and returns it
+    //throws IOException if an error occurs reading data from file
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
@@ -48,7 +49,7 @@ public class JsonReader {
     }
 
     //Modifies: yourApp
-    //Effects: Parses App from JSON object and returns it
+    //Effects: Parses team data from JSON object and adds the teams to yourApp
     private void addData(App yourApp, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Teams");
         for (Object json : jsonArray) {
@@ -58,6 +59,8 @@ public class JsonReader {
         }
     }
 
+    //Effects: Parses User data for a Team from JSON object, adds the Users
+    // to the Team, and returns the Team
     private Team getTeamInfo(JSONObject jsonObject) {
         String name = jsonObject.getString("Team Name");
         Team newTeam = new Team(name);
@@ -70,6 +73,8 @@ public class JsonReader {
         return newTeam;
     }
 
+    //Effects: Parses Assessment data for a user from JSON object, adds the Assessments
+    //to the User, and returns the User
     private User getUserInfo(JSONObject jsonObject) {
         String name = jsonObject.getString("User Name");
         User newUser = new User(name);
@@ -82,6 +87,7 @@ public class JsonReader {
         return newUser;
     }
 
+    //Effects: Parses an Assessment's fields from JSON object and returns the Assessment
     private Assessment getAssessmentInfo(JSONObject jsonObject) {
         int con = jsonObject.getInt("Conscientiousness");
         int emo = jsonObject.getInt("Emotionality");

@@ -1,0 +1,14 @@
+{"Teams": [{
+    "Team Name": "Test Team 3",
+    "Users": [{
+        "User Name": "Test User 3",
+        "Assessments": [{
+            "Conscientiousness": 4,
+            "Emotionality": 4,
+            "Honesty-Humility": 4,
+            "Extraversion": 4,
+            "Openness to Experience": 4,
+            "Agreeableness": 4
+        }]
+    }]
+}]}
