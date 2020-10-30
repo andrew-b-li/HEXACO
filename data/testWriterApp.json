@@ -1,0 +1,40 @@
+{"Teams": [
+    {
+        "Team Name": "Test Team 1",
+        "Users": [{
+            "User Name": "Test User 1",
+            "Assessments": [{
+                "Conscientiousness": 1,
+                "Emotionality": 1,
+                "Honesty-Humility": 1,
+                "Extraversion": 1,
+                "Openness to Experience": 1,
+                "Agreeableness": 1
+            }]
+        }]
+    },
+    {
+        "Team Name": "Test Team 2",
+        "Users": [{
+            "User Name": "Test User 2",
+            "Assessments": [
+                {
+                    "Conscientiousness": 2,
+                    "Emotionality": 2,
+                    "Honesty-Humility": 2,
+                    "Extraversion": 2,
+                    "Openness to Experience": 2,
+                    "Agreeableness": 2
+                },
+                {
+                    "Conscientiousness": 3,
+                    "Emotionality": 3,
+                    "Honesty-Humility": 3,
+                    "Extraversion": 3,
+                    "Openness to Experience": 3,
+                    "Agreeableness": 3
+                }
+            ]
+        }]
+    }
+]}

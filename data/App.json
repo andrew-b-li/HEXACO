@@ -1,0 +1,70 @@
+{"Teams": [{
+    "Team Name": "Chicago Bulls",
+    "Users": [
+        {
+            "User Name": "Michael Jordan",
+            "Assessments": [
+                {
+                    "Conscientiousness": 1,
+                    "Emotionality": 4,
+                    "Honesty-Humility": 5,
+                    "Extraversion": 3,
+                    "Openness to Experience": 5,
+                    "Agreeableness": 2
+                },
+                {
+                    "Conscientiousness": 5,
+                    "Emotionality": 5,
+                    "Honesty-Humility": 5,
+                    "Extraversion": 5,
+                    "Openness to Experience": 5,
+                    "Agreeableness": 5
+                },
+                {
+                    "Conscientiousness": 5,
+                    "Emotionality": 2,
+                    "Honesty-Humility": 1,
+                    "Extraversion": 3,
+                    "Openness to Experience": 3,
+                    "Agreeableness": 4
+                }
+            ]
+        },
+        {
+            "User Name": "Steve Kerr",
+            "Assessments": []
+        },
+        {
+            "User Name": "Dennis Rodman",
+            "Assessments": [
+                {
+                    "Conscientiousness": 1,
+                    "Emotionality": 1,
+                    "Honesty-Humility": 2,
+                    "Extraversion": 3,
+                    "Openness to Experience": 1,
+                    "Agreeableness": 2
+                },
+                {
+                    "Conscientiousness": 1,
+                    "Emotionality": 1,
+                    "Honesty-Humility": 1,
+                    "Extraversion": 1,
+                    "Openness to Experience": 1,
+                    "Agreeableness": 1
+                }
+            ]
+        },
+        {
+            "User Name": "Scottie Pippen",
+            "Assessments": [{
+                "Conscientiousness": 5,
+                "Emotionality": 4,
+                "Honesty-Humility": 5,
+                "Extraversion": 5,
+                "Openness to Experience": 3,
+                "Agreeableness": 4
+            }]
+        }
+    ]
+}]}
