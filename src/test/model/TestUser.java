@@ -37,7 +37,7 @@ public class TestUser {
 
     @Test
     void testToStringNoAssessments() {
-         String actualString = testUser.toString();
+        String actualString = testUser.toString();
         String expectedString = "Default Test User:";
         assertEquals(expectedString, actualString);
     }
