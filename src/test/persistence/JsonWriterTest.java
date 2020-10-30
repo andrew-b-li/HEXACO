@@ -15,10 +15,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Testing methods for JsonWriter
+// This class is based on the CPSC 210 Json Serialization Demo:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 class JsonWriterTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
     Team testTeam1 = new Team("Test Team 1");
     User testUser1 = new User("Test User 1");
     Assessment testAssessment1 = new Assessment(1,1,1,1,1,1);
@@ -51,11 +51,9 @@ class JsonWriterTest {
             writer.open();
             writer.write(testApp);
             writer.close();
-
             JsonReader reader = new JsonReader("./data/testWriterApp.json");
             App yourApp = reader.read();
-            ArrayList<Team> readTeams = yourApp.getTeamList();
-            assertEquals(2, readTeams.size());
+            assertEquals(testApp.toString(), yourApp.toString());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

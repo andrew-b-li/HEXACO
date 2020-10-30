@@ -6,6 +6,11 @@ import model.Team;
 import model.User;
 import org.json.JSONObject;
 
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 /*
@@ -13,14 +18,27 @@ import java.util.*;
  * Allows users to create teams, users, and assessments.
  */
 public class PersonalityApp {
+    private static final String JSON_STORE = "./data/App.json";
     private App yourApp;
     private Scanner keyboard;
+
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: Displays introduction and list of current teams then starts the rest of the program
     public PersonalityApp() {
         keyboard = new Scanner(System.in);
+
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
         yourApp = new App();
         System.out.println("Welcome to the Digital HEXACO personality test.");
+        System.out.println("Would you like to load data from a previous session (y/n)?");
+        String loadData = keyboard.nextLine();
+        if (loadData.equals("y")) {
+            loadApp();
+        }
         System.out.println("\nTeam list:");
         System.out.println(yourApp.toString());
         runPersonality();
@@ -31,12 +49,14 @@ public class PersonalityApp {
     //          Allows users to view and create user profiles and run assessments.
     public void runPersonality() {
         boolean running = true;
+        System.out.println("Please enter your team name (Enter to save your data and exit the program):");
+        String teamName = keyboard.nextLine();
+        if (teamName.equals("")) {
+            running = false;
+        }
         while (running) {
-            System.out.println("Please enter your team name:");
-            String teamName = keyboard.nextLine();
             Team currentTeam = yourApp.teamExists(teamName);
-            System.out.println("\nYour team:");
-            System.out.println(currentTeam.toString());
+            System.out.println("\nYour team:\n" + currentTeam.toString());
             System.out.println("Please enter a team member's name (Enter to return to the team list):");
             String userName = keyboard.nextLine();
             while (!userName.equals("")) {
@@ -44,6 +64,23 @@ public class PersonalityApp {
             }
             System.out.println("Team List:");
             System.out.println(yourApp.toString());
+            System.out.println("Please enter your team name (Enter to save your data and exit the program):");
+            teamName = keyboard.nextLine();
+            if (teamName.equals("")) {
+                running = false;
+            }
+            exitSequence();
+        }
+    }
+
+    //Effects: Asks the user if they would like to save App data
+    //If requested, saves data to a JSON file and ends the program.
+    //Otherwise, ends the program
+    public void exitSequence() {
+        System.out.println("Would you like to save your data (y/n)?");
+        String saveDecision = keyboard.nextLine();
+        if (saveDecision.equals("y")) {
+            saveApp();
         }
     }
 
@@ -97,5 +134,32 @@ public class PersonalityApp {
         assessment.setOpennessToExperience(question7OAnswer);
         user.addAssessment(assessment);
         System.out.println("The assessment is complete!\n");
+    }
+
+    //Effects: saves the App to a file
+    // This class is based on the CPSC 210 Json Serialization Demo:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    private void saveApp() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(yourApp);
+            jsonWriter.close();
+            System.out.println("Saved data to: " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //Modifies: this
+    //Effects: loads an App from a file
+    // This class is based on the CPSC 210 Json Serialization Demo:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    private void loadApp() {
+        try {
+            yourApp = jsonReader.read();
+            System.out.println("Loaded data from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

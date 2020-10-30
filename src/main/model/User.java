@@ -72,6 +72,7 @@ public class User {
         return jsonArray;
     }
 
+    //Effects: Clears assessmentList
     public void clearAssessments() {
         assessmentList.clear();
     }

@@ -56,13 +56,14 @@ public class App {
         return list;
     }
 
+    //Effects: Calls teamsToJson to return a list of Teams in App as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Teams", teamsToJson());
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    //Effects: Iterates through the Teams in App and returns the information as a JSONArray
     private JSONArray teamsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Team team : teamList) {
@@ -71,6 +72,7 @@ public class App {
         return jsonArray;
     }
 
+    //Effects: Clears teamList
     public void clearTeams() {
         teamList.clear();
     }

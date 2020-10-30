@@ -74,6 +74,7 @@ public class Team {
         return list;
     }
 
+    //Effects: Calls usersToJson to return a list of Users in a Team as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Team Name", teamName);
@@ -81,6 +82,7 @@ public class Team {
         return json;
     }
 
+    //Effects: Iterates through the Users in userList and returns the information as a JSONArray
     private JSONArray usersToJson() {
         JSONArray jsonArray = new JSONArray();
         for (User user : userList) {
@@ -89,6 +91,7 @@ public class Team {
         return jsonArray;
     }
 
+    //Effects: Clears userList
     public void clearUsers() {
         userList.clear();
     }

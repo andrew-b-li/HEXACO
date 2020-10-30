@@ -112,6 +112,7 @@ public class Assessment {
                 + conscientiousness + " O:" + opennessToExperience;
     }
 
+    //Effects: Returns a JSONObject containing an Assessment's fields
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Honesty-Humility", honestyHumility);

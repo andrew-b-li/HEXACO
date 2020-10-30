@@ -12,22 +12,26 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-// Represents a reader that reads workroom from JSON data stored in file
+//Represents a reader that reads App from JSON data stored in file
+//This class is based on the CPSC 210 Json Serialization Demo:
+//https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonReader {
     private String source;
 
-    // EFFECTS: constructs reader to read from source file
+    //Effects: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
+    //Effects: reads App from file and returns it
+    //throws IOException if an error occurs reading data from file
     public App read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseApp(jsonObject);
     }
 
-    // EFFECTS: reads source file as string and returns it
+    //Effects: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
@@ -36,12 +40,15 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    //Effects: Parses App from JSON object and returns it
     private App parseApp(JSONObject jsonObjet) {
         App yourApp = new App();
         addData(yourApp, jsonObjet);
         return yourApp;
     }
 
+    //Modifies: yourApp
+    //Effects: Parses App from JSON object and returns it
     private void addData(App yourApp, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Teams");
         for (Object json : jsonArray) {
@@ -58,6 +65,7 @@ public class JsonReader {
         for (Object json : jsonArray) {
             JSONObject nextUser = (JSONObject) json;
             User newUser = getUserInfo(nextUser);
+            newTeam.addUser(newUser);
         }
         return newTeam;
     }
