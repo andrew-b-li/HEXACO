@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /*
@@ -53,4 +56,24 @@ public class User {
         }
         return list;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("User Name", userName);
+        json.put("Assessments", assessmentsToJson());
+        return json;
+    }
+
+    private JSONArray assessmentsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Assessment assessment : assessmentList) {
+            jsonArray.put(assessment.toJson());
+        }
+        return jsonArray;
+    }
+
+    public void clearAssessments() {
+        assessmentList.clear();
+    }
+
 }

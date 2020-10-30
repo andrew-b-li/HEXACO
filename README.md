@@ -27,3 +27,7 @@ hope to connect my prior interests with computer science.
 -As a user, I want to be able to have multiple tests associated with me (Done)
 -As a user, I want to be able to view the tests associated with me (Done)
 -As a user, I want to be able to view the members of a team and their most recent personality data (In Progress)
+
+## Phase 2 User Stories
+-As a user, I want to be able to save all team, user, and assessment data to a file for later use.
+-As a user, I want to be able to reload all the data from a previous session from a file. 

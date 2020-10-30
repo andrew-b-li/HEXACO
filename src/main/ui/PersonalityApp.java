@@ -1,8 +1,10 @@
 package ui;
 
+import model.App;
 import model.Assessment;
 import model.Team;
 import model.User;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -11,14 +13,16 @@ import java.util.*;
  * Allows users to create teams, users, and assessments.
  */
 public class PersonalityApp {
-    private ArrayList<Team> teamList = new ArrayList<>();
-    Scanner keyboard = new Scanner(System.in);
+    private App yourApp;
+    private Scanner keyboard;
 
     //EFFECTS: Displays introduction and list of current teams then starts the rest of the program
     public PersonalityApp() {
+        keyboard = new Scanner(System.in);
+        yourApp = new App();
         System.out.println("Welcome to the Digital HEXACO personality test.");
         System.out.println("\nTeam list:");
-        System.out.println(this.toString());
+        System.out.println(yourApp.toString());
         runPersonality();
     }
 
@@ -26,10 +30,11 @@ public class PersonalityApp {
     //          associated with the team, or create a new team.
     //          Allows users to view and create user profiles and run assessments.
     public void runPersonality() {
-        System.out.println("Please enter your team name:");
-        String teamName = keyboard.nextLine();
-        while (!teamName.equals("")) {
-            Team currentTeam = teamExists(teamName);
+        boolean running = true;
+        while (running) {
+            System.out.println("Please enter your team name:");
+            String teamName = keyboard.nextLine();
+            Team currentTeam = yourApp.teamExists(teamName);
             System.out.println("\nYour team:");
             System.out.println(currentTeam.toString());
             System.out.println("Please enter a team member's name (Enter to return to the team list):");
@@ -38,9 +43,7 @@ public class PersonalityApp {
                 userName = displayUserAndAssessment(currentTeam, userName);
             }
             System.out.println("Team List:");
-            System.out.println(this.toString());
-            System.out.println("\nPlease enter your team name:");
-            teamName = keyboard.nextLine();
+            System.out.println(yourApp.toString());
         }
     }
 
@@ -61,29 +64,11 @@ public class PersonalityApp {
             System.out.println("\nWould you like to be assessed (y/n)?");
             response = keyboard.nextLine();
         }
-        System.out.println("Your team:");
+        System.out.println("\nYour team:");
         System.out.println(currentTeam.toString());
-        keyboard.nextLine();
         System.out.println("\nPlease enter a team member's name (Enter to return to the team list):");
         userName = keyboard.nextLine();
         return userName;
-    }
-
-    //Effects: If a team name is already used by a Team in the list of Teams, return that Team. Otherwise, return a
-    //          new Team with the given team name.
-    public Team teamExists(String teamName) {
-        boolean teamExists = false;
-        Team currentTeam = new Team(teamName);
-        for (Team team: teamList) {
-            if (teamName.equals(team.getTeamName())) {
-                currentTeam = team;
-                teamExists = true;
-            }
-        }
-        if (!teamExists) {
-            teamList.add(currentTeam);
-        }
-        return currentTeam;
     }
 
     //Requires: Responses must be the integers 1,2,3,4 or 5.
@@ -93,43 +78,24 @@ public class PersonalityApp {
         System.out.println("\nPlease answer the following questions the the best of your ability:");
         System.out.println("1 = strongly disagree, 2 = disagree, 3 = neutral, 4 = agree, 5 = strongly agree");
         System.out.println(Assessment.QUESTION2C);
-        int question2CAnswer = keyboard.nextInt();
+        int question2CAnswer = Integer.parseInt(keyboard.nextLine());
         assessment.setConscientiousness(question2CAnswer);
         System.out.println(Assessment.QUESTION3A);
-        int question3AAnswer = keyboard.nextInt();
+        int question3AAnswer = Integer.parseInt(keyboard.nextLine());
         assessment.setAgreeableness(question3AAnswer);
         System.out.println(Assessment.QUESTION4X);
-        int question4XAnswer = keyboard.nextInt();
+        int question4XAnswer = Integer.parseInt(keyboard.nextLine());
         assessment.setExtraversion(question4XAnswer);
         System.out.println(Assessment.QUESTION5E);
-        int question5EAnswer = keyboard.nextInt();
+        int question5EAnswer = Integer.parseInt(keyboard.nextLine());
         assessment.setEmotionality(question5EAnswer);
         System.out.println(Assessment.QUESTION6H);
-        int question6HAnswer = keyboard.nextInt();
+        int question6HAnswer = Integer.parseInt(keyboard.nextLine());
         assessment.setHonestyHumility(question6HAnswer);
         System.out.println(Assessment.QUESTION7O);
-        int question7OAnswer = keyboard.nextInt();
+        int question7OAnswer = Integer.parseInt(keyboard.nextLine());
         assessment.setOpennessToExperience(question7OAnswer);
         user.addAssessment(assessment);
-        keyboard.nextLine();
         System.out.println("The assessment is complete!\n");
-    }
-
-    @Override
-    //Effects: Returns a String with a list of teams their contained users
-    public String toString() {
-        String list = new String();
-        if (!teamList.isEmpty()) {
-            if (teamList.size() == 1) {
-                Team team = teamList.get(0);
-                list = team.toString();
-            } else {
-                for (Team team : teamList) {
-                    list = list + team.toString() + "\n";
-                }
-                list = list.substring(0, list.length() - 1);
-            }
-        }
-        return list;
     }
 }

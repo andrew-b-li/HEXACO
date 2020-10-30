@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 /*
  * Represents a personality assessment with scores for each HEXACO personality trait
  */
@@ -108,5 +110,16 @@ public class Assessment {
     public String toString() {
         return "H:" + honestyHumility + " E:" + emotionality + " X:" + extraversion + " A:" + agreeableness + " C:"
                 + conscientiousness + " O:" + opennessToExperience;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Honesty-Humility", honestyHumility);
+        json.put("Emotionality", emotionality);
+        json.put("Extraversion", extraversion);
+        json.put("Agreeableness", agreeableness);
+        json.put("Conscientiousness", conscientiousness);
+        json.put("Openness to Experience", opennessToExperience);
+        return json;
     }
 }
