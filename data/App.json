@@ -6,12 +6,12 @@
                 "User Name": "Michael Jordan",
                 "Assessments": [
                     {
-                        "Conscientiousness": 2,
+                        "Conscientiousness": 3,
                         "Emotionality": 4,
-                        "Honesty-Humility": 5,
-                        "Extraversion": 1,
-                        "Openness to Experience": 3,
-                        "Agreeableness": 5
+                        "Honesty-Humility": 2,
+                        "Extraversion": 5,
+                        "Openness to Experience": 5,
+                        "Agreeableness": 1
                     },
                     {
                         "Conscientiousness": 5,
@@ -22,12 +22,12 @@
                         "Agreeableness": 5
                     },
                     {
-                        "Conscientiousness": 4,
+                        "Conscientiousness": 3,
                         "Emotionality": 2,
-                        "Honesty-Humility": 3,
-                        "Extraversion": 5,
-                        "Openness to Experience": 3,
-                        "Agreeableness": 1
+                        "Honesty-Humility": 4,
+                        "Extraversion": 3,
+                        "Openness to Experience": 1,
+                        "Agreeableness": 5
                     }
                 ]
             },
@@ -39,12 +39,12 @@
                 "User Name": "Dennis Rodman",
                 "Assessments": [
                     {
-                        "Conscientiousness": 2,
+                        "Conscientiousness": 3,
                         "Emotionality": 1,
-                        "Honesty-Humility": 1,
+                        "Honesty-Humility": 2,
                         "Extraversion": 1,
-                        "Openness to Experience": 3,
-                        "Agreeableness": 2
+                        "Openness to Experience": 2,
+                        "Agreeableness": 1
                     },
                     {
                         "Conscientiousness": 1,
@@ -59,10 +59,10 @@
             {
                 "User Name": "Scottie Pippen",
                 "Assessments": [{
-                    "Conscientiousness": 4,
+                    "Conscientiousness": 5,
                     "Emotionality": 4,
-                    "Honesty-Humility": 3,
-                    "Extraversion": 5,
+                    "Honesty-Humility": 4,
+                    "Extraversion": 3,
                     "Openness to Experience": 5,
                     "Agreeableness": 5
                 }]
@@ -76,20 +76,20 @@
                 "User Name": "Kareem Abdul-Jabbar",
                 "Assessments": [
                     {
+                        "Conscientiousness": 1,
+                        "Emotionality": 4,
+                        "Honesty-Humility": 3,
+                        "Extraversion": 1,
+                        "Openness to Experience": 2,
+                        "Agreeableness": 5
+                    },
+                    {
                         "Conscientiousness": 3,
                         "Emotionality": 4,
                         "Honesty-Humility": 1,
-                        "Extraversion": 5,
-                        "Openness to Experience": 1,
-                        "Agreeableness": 2
-                    },
-                    {
-                        "Conscientiousness": 1,
-                        "Emotionality": 4,
-                        "Honesty-Humility": 2,
                         "Extraversion": 2,
-                        "Openness to Experience": 3,
-                        "Agreeableness": 5
+                        "Openness to Experience": 5,
+                        "Agreeableness": 2
                     }
                 ]
             },
@@ -103,37 +103,37 @@
                     {
                         "Conscientiousness": 2,
                         "Emotionality": 3,
-                        "Honesty-Humility": 4,
+                        "Honesty-Humility": 2,
                         "Extraversion": 4,
                         "Openness to Experience": 2,
-                        "Agreeableness": 2
+                        "Agreeableness": 4
                     },
                     {
-                        "Conscientiousness": 5,
+                        "Conscientiousness": 2,
                         "Emotionality": 4,
-                        "Honesty-Humility": 1,
+                        "Honesty-Humility": 5,
                         "Extraversion": 1,
-                        "Openness to Experience": 2,
-                        "Agreeableness": 3
+                        "Openness to Experience": 3,
+                        "Agreeableness": 1
                     },
                     {
-                        "Conscientiousness": 3,
+                        "Conscientiousness": 2,
                         "Emotionality": 5,
                         "Honesty-Humility": 3,
-                        "Extraversion": 2,
-                        "Openness to Experience": 2,
-                        "Agreeableness": 1
+                        "Extraversion": 3,
+                        "Openness to Experience": 1,
+                        "Agreeableness": 2
                     }
                 ]
             },
             {
                 "User Name": "Byron Scott",
                 "Assessments": [{
-                    "Conscientiousness": 5,
+                    "Conscientiousness": 2,
                     "Emotionality": 2,
-                    "Honesty-Humility": 1,
+                    "Honesty-Humility": 5,
                     "Extraversion": 1,
-                    "Openness to Experience": 2,
+                    "Openness to Experience": 1,
                     "Agreeableness": 1
                 }]
             }
@@ -146,20 +146,20 @@
                 "User Name": "Larry Bird",
                 "Assessments": [
                     {
-                        "Conscientiousness": 1,
+                        "Conscientiousness": 2,
                         "Emotionality": 2,
-                        "Honesty-Humility": 4,
-                        "Extraversion": 1,
-                        "Openness to Experience": 2,
-                        "Agreeableness": 5
+                        "Honesty-Humility": 1,
+                        "Extraversion": 4,
+                        "Openness to Experience": 5,
+                        "Agreeableness": 1
                     },
                     {
-                        "Conscientiousness": 3,
+                        "Conscientiousness": 2,
                         "Emotionality": 2,
                         "Honesty-Humility": 3,
-                        "Extraversion": 5,
+                        "Extraversion": 3,
                         "Openness to Experience": 2,
-                        "Agreeableness": 2
+                        "Agreeableness": 5
                     }
                 ]
             },
@@ -173,14 +173,24 @@
         "Team Name": "Toronto Raptors",
         "Users": [{
             "User Name": "Kawhi Leonard",
-            "Assessments": [{
-                "Conscientiousness": 1,
-                "Emotionality": 1,
-                "Honesty-Humility": 1,
-                "Extraversion": 1,
-                "Openness to Experience": 1,
-                "Agreeableness": 1
-            }]
+            "Assessments": [
+                {
+                    "Conscientiousness": 1,
+                    "Emotionality": 1,
+                    "Honesty-Humility": 1,
+                    "Extraversion": 1,
+                    "Openness to Experience": 1,
+                    "Agreeableness": 1
+                },
+                {
+                    "Conscientiousness": 1,
+                    "Emotionality": 1,
+                    "Honesty-Humility": 1,
+                    "Extraversion": 1,
+                    "Openness to Experience": 1,
+                    "Agreeableness": 1
+                }
+            ]
         }]
     }
 ]}
