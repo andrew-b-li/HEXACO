@@ -2,6 +2,7 @@ package ui;
 
 import model.App;
 import model.Team;
+import model.User;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -12,60 +13,65 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Gui extends Frame implements ActionListener {
     private static final String JSON_STORE = "./data/App.json";
     private App yourApp = new App();
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private ArrayList<JButton> teamButtons;
 
+    private Team currentTeam = new Team("");
+    private User currentUser = new User("");
 
     JFrame frame = new JFrame();
     JPanel panelContainer = new JPanel();
     JPanel panelLoadSave = new JPanel();
-    JPanel panelTeams = new JPanel();
 
+    JPanel panelTeams = new JPanel();
     JPanel panelTeamsButtons = new JPanel();
 
     JPanel panelUsers = new JPanel();
+    JPanel panelUsersButtons = new JPanel();
+
     JPanel panelAssessments = new JPanel();
 
     JButton buttonNew = new JButton("No - Start Fresh");
     JButton buttonLoad = new JButton("Yes - Load Previous");
-    JButton buttonSecond = new JButton("End Session");
+    JButton buttonEnd = new JButton("End Session");
 
     String textLoadSaveOne = "Welcome to the Digital HEXACO personality test.";
     String textLoadSaveTwo = "Would you like to load data from a previous session?";
 
     JTextArea textLoadSave = new JTextArea(textLoadSaveOne + "\n" + textLoadSaveTwo);
     JTextArea textTeams = new JTextArea();
+    JTextArea textUsers = new JTextArea();
 
     CardLayout cl = new CardLayout();
 
     public Gui() {
-        panelContainer.setLayout(cl);
-        panelContainer.setPreferredSize(new Dimension(800,800));
-
-        panelLoadSave.setLayout(new BoxLayout(panelLoadSave, BoxLayout.PAGE_AXIS));
-        panelLoadSave.add(textLoadSave);
-        panelLoadSave.add(buttonNew);
-        panelLoadSave.add(buttonLoad);
+        setupContainer();
+        setupLoadSavePanel();
 
         panelTeams.setLayout(new BoxLayout(panelTeams, BoxLayout.PAGE_AXIS));
         panelTeams.add(textTeams);
-
         panelTeamsButtons.setLayout(new GridLayout(4,0));
 
-        panelContainer.add(panelLoadSave, "1");
-        panelContainer.add(panelTeams, "2");
-        panelContainer.add(panelUsers, "3");
-        panelContainer.add(panelAssessments, "3");
+        panelUsers.setLayout(new BoxLayout(panelUsers, BoxLayout.PAGE_AXIS));
+        panelUsers.add(textUsers);
+        panelUsersButtons.setLayout(new GridLayout(4,0));
+
+//        panelContainer.add(panelLoadSave, "1");
+//        panelContainer.add(panelTeams, "2");
+//        panelContainer.add(panelUsers, "3");
+//        panelContainer.add(panelAssessments, "4");
 
         buttonNew.addActionListener(this);
         buttonLoad.addActionListener(this);
-        buttonSecond.addActionListener(this);
+        buttonEnd.addActionListener(this);
+
+        buttonNew.setName("");
+        buttonLoad.setName("");
+        buttonEnd.setName("");
 
         frame.add(panelContainer);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,28 +82,42 @@ public class Gui extends Frame implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    public void setupContainer() {
+        panelContainer.setLayout(cl);
+        panelContainer.setPreferredSize(new Dimension(800,800));
+        panelContainer.add(panelLoadSave, "1");
+        panelContainer.add(panelTeams, "2");
+        panelContainer.add(panelUsers, "3");
+        panelContainer.add(panelAssessments, "4");
+    }
+
+    public void setupLoadSavePanel() {
+        panelLoadSave.setLayout(new BoxLayout(panelLoadSave, BoxLayout.PAGE_AXIS));
+        panelLoadSave.add(textLoadSave);
+        panelLoadSave.add(buttonNew);
+        panelLoadSave.add(buttonLoad);
+    }
+
+
     public void setupTeamsPanel() {
         for (Team team : yourApp.getTeamList()) {
             JButton buttonToAdd = new JButton(team.getTeamName());
             buttonToAdd.setName(team.getTeamName());
+            buttonToAdd.addActionListener(this);
             panelTeamsButtons.add(buttonToAdd);
         }
-        panelTeamsButtons.add(buttonSecond);
+        panelTeamsButtons.add(buttonEnd);
         panelTeams.add(panelTeamsButtons);
-
     }
 
-    public void setupTeamPanel() {
-        for (Team team : yourApp.getTeamList()) {
-            JButton buttonToAdd = new JButton(team.getTeamName());
-            panelTeamsButtons.add(buttonToAdd);
+    public void setupUsersPanel(Team currentTeam) {
+        for (User user : currentTeam.getUserList()) {
+            JButton buttonToAdd = new JButton(user.getUserName());
+            panelUsersButtons.add(buttonToAdd);
         }
-        panelTeamsButtons.add(buttonSecond);
-        panelTeams.add(panelTeamsButtons);
-
+        panelUsersButtons.add(buttonEnd);
+        panelUsers.add(panelUsersButtons);
     }
-
-
 
     public void actionPerformed(ActionEvent e) {
         final JComponent source = (JComponent) e.getSource();
@@ -105,41 +125,44 @@ public class Gui extends Frame implements ActionListener {
             yourApp = new App();
             setupTeamsPanel();
         }
-        if (source.equals(buttonLoad)) {
+
+        chooseLoad(source);
+
+        if (source.equals(buttonEnd)) {
+            cl.show(panelContainer, "1");
+        }
+
+        chooseTeam(source);
+
+        for (User user : currentTeam.getUserList()) {
+            if (source.getName().equals(user.getUserName())) {
+                this.currentUser = user;
+                //setupUsersPanel(team);
+                //textUsers.setText("Current Team: \n" + team.toString());
+                cl.show(panelContainer, "4");
+            }
+        }
+    }
+
+    public void chooseLoad(JComponent theSource) {
+        if (theSource.equals(buttonLoad)) {
             loadApp();
             textTeams.setText("Current Teams: \n" + yourApp.toString());
             cl.show(panelContainer, "2");
             setupTeamsPanel();
         }
-        if (source.equals(buttonSecond)) {
-            cl.show(panelContainer, "1");
-        }
+    }
 
+    public void chooseTeam(JComponent theSource) {
         for (Team team : yourApp.getTeamList()) {
-            if (source.getName().equals(team.getTeamName())) {
+            if (theSource.getName().equals(team.getTeamName())) {
+                this.currentTeam = team;
+                setupUsersPanel(team);
+                textUsers.setText("Current Team: \n" + team.toString());
                 cl.show(panelContainer, "3");
             }
         }
     }
-
-
-
-
-    public static void main(String[] args) {
-        new Gui();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 
     private void saveApp() {
         try {
@@ -164,4 +187,9 @@ public class Gui extends Frame implements ActionListener {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
+
+    public static void main(String[] args) {
+        new Gui();
+    }
+
 }
