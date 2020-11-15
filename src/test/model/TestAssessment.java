@@ -96,6 +96,5 @@ public class TestAssessment {
         String actualString = testAssessment1.toString();
         String expectedString = "H:2 E:2 X:2 A:2 C:2 O:2";
         assertEquals(expectedString, actualString);
-
     }
 }

@@ -71,7 +71,6 @@ public class TestTeam {
     void testUserExistsDoesNotExist(){
         testTeam.addUser(user1);
         User newUser = testTeam.userExists("User 2");
-
         assertEquals( "User 2", newUser.getUserName());
     }
 
