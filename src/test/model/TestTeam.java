@@ -37,6 +37,16 @@ public class TestTeam {
     }
 
     @Test
+    void testRemoveUser(){
+        testTeam.addUser(user1);
+        testTeam.addUser(user2);
+        testTeam.removeUser(user2);
+        ArrayList<User> actualUserList = testTeam.getUserList();
+        User actualUser = actualUserList.get(0);
+        assertEquals(user1, actualUser);
+    }
+
+    @Test
     void testToStringNoUsers() {
         String actualString = testTeam.toString();
         String expectedString = "Default Test Team:";

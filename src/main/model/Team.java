@@ -37,6 +37,12 @@ public class Team {
         this.userList.add(user);
     }
 
+    //Modifies: this
+    //Effects: adds a User to the list of Users
+    public void removeUser(User user) {
+        this.userList.remove(user);
+    }
+
     //Effects: If a username is already used by a User in the list of Users, return that user. Otherwise, return a
     //          new user with the given username.
     public User userExists(String userName) {

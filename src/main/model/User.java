@@ -47,9 +47,9 @@ public class User {
                 list = list + assessment.toString();
             } else {
                 for (Assessment assessment : assessmentList) {
-                    list = list + assessment.toString() + ", ";
+                    list = list + assessment.toString() + "\n";
                 }
-                list = list.substring(0, list.length() - 2);
+                list = list.substring(0, list.length() - 1);
             }
         } else {
             list = list.substring(0, list.length() - 1);

@@ -6,20 +6,21 @@ import org.json.JSONObject;
  * Represents a personality assessment with scores for each HEXACO personality trait
  */
 public class Assessment {
-    private int honestyHumility;
-    private int emotionality;
-    private int extraversion;
-    private int agreeableness;
-    private int conscientiousness;
-    private int opennessToExperience;
+    private int honestyHumility = 0;
+    private int emotionality = 0;
+    private int extraversion = 0;
+    private int agreeableness = 0;
+    private int conscientiousness = 0;
+    private int opennessToExperience = 0;
 
-    public static final String QUESTION2C = "I plan ahead and organize things, to avoid scrambling at the last minute.";
-    public static final String QUESTION3A = "I rarely hold a grudge, even against people who have badly wronged me.";
-    public static final String QUESTION4X = "I feel reasonably satisfied with myself overall.";
-    public static final String QUESTION5E = "I would feel afraid if I had to travel in bad weather conditions.";
-    public static final String QUESTION6H = "I wouldn't use flattery to get a raise or promotion at work, "
+    public static final String QUESTION2C = "1. I plan ahead and organize things "
+            + "to avoid scrambling at the last minute.;";
+    public static final String QUESTION3A = "2. I rarely hold a grudge, even against people who have badly wronged me.";
+    public static final String QUESTION4X = "3. I feel reasonably satisfied with myself overall.";
+    public static final String QUESTION5E = "4. I would feel afraid if I had to travel in bad weather conditions.";
+    public static final String QUESTION6H = "5. I wouldn't use flattery to get a raise or promotion at work, "
             + "even if I thought it would succeed.";
-    public static final String QUESTION7O = "I'm interested in learning about the history and "
+    public static final String QUESTION7O = "6. I'm interested in learning about the history and "
             + "politics of other countries.";
 
     //Construct an Assessment
