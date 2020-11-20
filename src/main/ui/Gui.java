@@ -85,11 +85,13 @@ public class Gui extends Frame implements ActionListener {
 
     CardLayout cl = new CardLayout();
 
+    //Modifies: this
+    //Effects: Sets up the panels for each "page" of the gui
     public Gui() {
         setupContainer();
         setupLoadSavePanel();
         setupExitSavePanel();
-        setupTeamsUsersAssessmentsPanel();
+        setupPanelDetails();
         addActionListeners();
         setEmptyNames();
 
@@ -102,6 +104,8 @@ public class Gui extends Frame implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    //Modifies: this
+    //Effects: Gives each object that has an associated action an empty name.
     public void setEmptyNames() {
         buttonNew.setName("");
         buttonLoad.setName("");
@@ -125,6 +129,8 @@ public class Gui extends Frame implements ActionListener {
         removeUser.setName("");
     }
 
+    //Modifies: this
+    //Effects: Assigns panels to panelContainer
     public void setupContainer() {
         panelContainer.setLayout(cl);
         panelContainer.setPreferredSize(new Dimension(800,800));
@@ -136,6 +142,8 @@ public class Gui extends Frame implements ActionListener {
         panelContainer.add(panelExitSave, "6");
     }
 
+    //Modifies: this
+    //Effects: Assigns an ActionListener to each interactive object (button or text field)
     public void addActionListeners() {
         buttonNew.addActionListener(this);
         buttonLoad.addActionListener(this);
@@ -159,16 +167,28 @@ public class Gui extends Frame implements ActionListener {
         removeUser.addActionListener(this);
     }
 
-    public void setupTeamsUsersAssessmentsPanel() {
-        panelTeams.setLayout(new BoxLayout(panelTeams, BoxLayout.PAGE_AXIS));
-        panelTeams.add(textTeams);
-        panelTeamsButtons.setLayout(new GridLayout(4,0));
-        panelTeams.add(panelTeamsButtons);
-        panelTeams.add(panelNewTeam);
-        panelNewTeam.add(newTeamName);
-        panelNewTeam.add(enterNewTeamName);
-        panelTeams.add(buttonEnd);
+    //Modifies: this
+    //Effects: Calls methods to add panels, buttons, and text fields to the panels that represent each page
+    public void setupPanelDetails() {
+        setupTeams();
+        setupUsers();
+        setupAssessments();
+        setupNewAssessmentPanel();
+    }
 
+    //Modifies: this
+    //Effects: Adds panels, buttons, and text fields to the panel that represents the Assessments page
+    private void setupAssessments() {
+        panelAssessments.setLayout(new BoxLayout(panelAssessments, BoxLayout.PAGE_AXIS));
+        panelAssessments.add(textAssessments);
+        panelAssessments.add(newAssessment);
+        panelAssessments.add(removeUser);
+        panelAssessments.add(backToUsers);
+    }
+
+    //Modifies: this
+    //Effects: Adds panels, buttons, and text fields to the panel that represents the Users page
+    private void setupUsers() {
         panelUsers.setLayout(new BoxLayout(panelUsers, BoxLayout.PAGE_AXIS));
         panelUsers.add(textUsers);
         panelUsersButtons.setLayout(new GridLayout(4,0));
@@ -177,15 +197,23 @@ public class Gui extends Frame implements ActionListener {
         panelNewUser.add(newUserName);
         panelNewUser.add(enterNewUserName);
         panelUsers.add(backToTeams);
-
-        panelAssessments.setLayout(new BoxLayout(panelAssessments, BoxLayout.PAGE_AXIS));
-        panelAssessments.add(textAssessments);
-        panelAssessments.add(newAssessment);
-        panelAssessments.add(removeUser);
-        panelAssessments.add(backToUsers);
-        setupNewAssessmentPanel();
     }
 
+    //Modifies: this
+    //Effects: Adds panels, buttons, and text fields to the panel that represents the Teams page
+    private void setupTeams() {
+        panelTeams.setLayout(new BoxLayout(panelTeams, BoxLayout.PAGE_AXIS));
+        panelTeams.add(textTeams);
+        panelTeamsButtons.setLayout(new GridLayout(4,0));
+        panelTeams.add(panelTeamsButtons);
+        panelTeams.add(panelNewTeam);
+        panelNewTeam.add(newTeamName);
+        panelNewTeam.add(enterNewTeamName);
+        panelTeams.add(buttonEnd);
+    }
+
+    //Modifies: this
+    //Effects: Adds panels, buttons, and text fields to the panel that represents the New Assessment page
     public void setupNewAssessmentPanel() {
         panelNewAssessment.setLayout(new BoxLayout(panelNewAssessment, BoxLayout.PAGE_AXIS));
         panelNewAssessment.add(newAssessmentTextArea);
@@ -204,6 +232,8 @@ public class Gui extends Frame implements ActionListener {
         newAssessmentTextArea.setText(fullAssessmentString);
     }
 
+    //Modifies: this
+    //Effects: Adds panels, buttons, and text fields to the panel that represents the starting page
     public void setupLoadSavePanel() {
         panelLoadSave.setLayout(new BoxLayout(panelLoadSave, BoxLayout.PAGE_AXIS));
         panelLoadSave.add(textLoadSave);
@@ -211,6 +241,8 @@ public class Gui extends Frame implements ActionListener {
         panelLoadSave.add(buttonLoad);
     }
 
+    //Modifies: this
+    //Effects: Adds panels, buttons, and text fields to the panel that represents the final page
     public void setupExitSavePanel() {
         panelExitSave.setLayout(new BoxLayout(panelExitSave, BoxLayout.PAGE_AXIS));
         panelExitSave.add(textExitSave);
@@ -218,6 +250,8 @@ public class Gui extends Frame implements ActionListener {
         panelExitSave.add(buttonYesSave);
     }
 
+    //Modifies: this
+    //Effects: Populates the TeamsButtons panel in the teams page with the current list of Teams
     public void setupTeamButtonsPanel() {
         panelTeamsButtons.removeAll();
         for (Team team : yourApp.getTeamList()) {
@@ -228,7 +262,7 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
-    public void setupUsersPanel(Team currentTeam) {
+    public void setupUsersButtonsPanel(Team currentTeam) {
         panelUsersButtons.removeAll();
         for (User user : currentTeam.getUserList()) {
             JButton buttonToAdd = new JButton(user.getUserName());
@@ -238,6 +272,8 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+    //Modifies: This
+    //Effects: Determines the procedures associated with a given user interaction
     public void actionPerformed(ActionEvent e) {
         final JComponent source = (JComponent) e.getSource();
         chooseLoad(source);
@@ -248,29 +284,47 @@ public class Gui extends Frame implements ActionListener {
         chooseNewTeamName(source);
         chooseNewUserName(source);
         chooseSubmitAssessment(source);
+        chooseRemoveUser(source);
+        chooseNewAssessment(source);
+        chooseButtonEnd(source);
+    }
 
-        if (source.equals(newAssessment)) {
-            cl.show(panelContainer, "5");
-        }
-
+    //Modifies: This
+    //Effects: If the End button is clicked, displays the exit page
+    private void chooseButtonEnd(JComponent source) {
         if (source.equals(buttonEnd)) {
             cl.show(panelContainer, "6");
         }
+    }
 
+    //Modifies: This
+    //Effects: If the New Assessment button is clicked, displays the New Assessment page
+    private void chooseNewAssessment(JComponent source) {
+        if (source.equals(newAssessment)) {
+            cl.show(panelContainer, "5");
+        }
+    }
+
+    //Modifies: This
+    //Effects: If the Remove User button is clicked, removes the current user from the current team and
+    //      displays the updated Users list
+    private void chooseRemoveUser(JComponent source) {
         if (source.equals(removeUser)) {
             currentTeam.removeUser(currentUser);
             textUsers.setText("Current Users: \n" + currentTeam.toString());
-            setupUsersPanel(currentTeam);
+            setupUsersButtonsPanel(currentTeam);
             cl.show(panelContainer, "3");
             playCrowdSound("Boo");
         }
-
     }
 
+    //Modifies: This
+    //Effects: If the back button is clicked, if the current page is Assessments, displays the Users page.
+    //      If the current page is Users, displays the Teams page.
     public void chooseGoBack(JComponent theSource) {
         if (theSource.equals(backToUsers)) {
             textUsers.setText("Current Users: \n" + currentTeam.toString());
-            setupUsersPanel(currentTeam);
+            setupUsersButtonsPanel(currentTeam);
             cl.show(panelContainer, "3");
         }
 
@@ -281,6 +335,9 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+    //Modifies: This
+    //Effects: If the Submit Assessment button is clicked, creates a new assessment using the values entered into
+    //      the text fields and adds it to the current user.
     public void chooseSubmitAssessment(JComponent theSource) {
         if (theSource.equals(submitAssessment)) {
             int answer1 = Integer.parseInt(question1.getText());
@@ -302,17 +359,23 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+    //Modifies: This
+    //Effects: If the New Team button is clicked, creates a new team with the name entered into the text field.
+    //      Adds the new Team to the list of teams and displays the Users page
     public void chooseNewTeamName(JComponent theSource) {
         if (theSource.equals(enterNewTeamName)) {
             String teamName = newTeamName.getText();
             newTeamName.setText("");
             currentTeam = yourApp.teamExists(teamName);
-            setupUsersPanel(currentTeam);
+            setupUsersButtonsPanel(currentTeam);
             textUsers.setText("Current Team: \n" + currentTeam.toString());
             cl.show(panelContainer, "3");
         }
     }
 
+    //Modifies: This
+    //Effects: If the New User button is clicked, creates a new User with the name entered into the text field.
+    //      Adds the new User to the list of Users and displays the Assessments page
     public void chooseNewUserName(JComponent theSource) {
         if (theSource.equals(enterNewUserName)) {
             String userName = newUserName.getText();
@@ -323,6 +386,9 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+    //Modifies: This
+    //Effects: If the Save button is clicked, saves the current App state and exits the program.
+    //      If the No Save button is clicked, exits the program without saving.
     public void chooseSave(JComponent theSource) {
         if (theSource.equals(buttonNoSave)) {
             System.exit(0);
@@ -333,6 +399,9 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+    //Modifies: This
+    //Effects: If the Load button is clicked, loads data from file and displays the Teams page.
+    //      If the No Load button is clicked, loads no data and displays the Teams page.
     public void chooseLoad(JComponent theSource) {
         if (theSource.equals(buttonNew)) {
             yourApp = new App();
@@ -349,11 +418,14 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+    //Modifies: This
+    //Effects: If a Team button is clicked, selects the corresponding team, loads its data,
+    //      and displays the Users page
     public void chooseTeam(JComponent theSource) {
         for (Team team : yourApp.getTeamList()) {
             if (theSource.getName().equals(team.getTeamName())) {
                 this.currentTeam = team;
-                setupUsersPanel(team);
+                setupUsersButtonsPanel(team);
                 textUsers.setText("Current Team: \n" + team.toString());
                 cl.show(panelContainer, "3");
                 playCrowdSound("Cheer");
@@ -361,8 +433,9 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
-    //Modifies: this
-    //Effects: Writes an App to a file
+    //Modifies: This
+    //Effects: If a User button is clicked, selects the corresponding team, loads its data,
+    //      and displays the Assessments page
     public void chooseUser(JComponent theSource) {
         for (User user : currentTeam.getUserList()) {
             if (theSource.getName().equals(user.getUserName())) {

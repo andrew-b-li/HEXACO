@@ -4,8 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
+/*
+ * Represents an App with a list of Teams.
+ */
 public class App {
     private ArrayList<Team> teamList;
 

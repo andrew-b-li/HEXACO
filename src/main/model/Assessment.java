@@ -32,7 +32,6 @@ public class Assessment {
         agreeableness = agreeable;
         conscientiousness = conscientious;
         opennessToExperience = open;
-
     }
 
     //Requires: honestyHumility must be an integer (1,2,3,4,5)
