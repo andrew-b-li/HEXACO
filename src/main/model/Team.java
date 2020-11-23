@@ -34,7 +34,10 @@ public class Team {
     //Modifies: this
     //Effects: adds a User to the list of Users
     public void addUser(User user) {
-        this.userList.add(user);
+        if (!this.userList.contains(user)) {
+            this.userList.add(user);
+            user.addTeam(this);
+        }
     }
 
     //Modifies: this
@@ -43,18 +46,40 @@ public class Team {
         this.userList.remove(user);
     }
 
+//    //Effects: If a username is already used by a User in the list of Users, return that user. Otherwise, return a
+//    //          new user with the given username.
+//    public User userExists(String userName) {
+//        boolean userExists = false;
+//        User currentUser = new User(userName);
+//        for (User user: this.getUserList()) {
+//            if (userName.equals(user.getUserName())) {
+//                currentUser = user;
+//                userExists = true;
+//            }
+//        }
+//        if (!userExists) {
+//            this.addUser(currentUser);
+//        }
+//        return currentUser;
+//    }
+
     //Effects: If a username is already used by a User in the list of Users, return that user. Otherwise, return a
     //          new user with the given username.
-    public User userExists(String userName) {
-        boolean userExists = false;
+    public User userExists(String userName, App yourApp) {
+        boolean userExistsInTeam = false;
         User currentUser = new User(userName);
         for (User user: this.getUserList()) {
-            if (userName.equals(user.getUserName())) {
+            if (currentUser.equals(user)) {
                 currentUser = user;
-                userExists = true;
+                userExistsInTeam = true;
             }
         }
-        if (!userExists) {
+        if (!userExistsInTeam) {
+            for (User user: yourApp.getGeneralUserSet()) {
+                if (currentUser.equals((user))) {
+                    currentUser = user;
+                }
+            }
             this.addUser(currentUser);
         }
         return currentUser;
@@ -100,5 +125,30 @@ public class Team {
     //Effects: Clears userList
     public void clearUsers() {
         userList.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Team team = (Team) o;
+
+        if (teamName != null ? !teamName.equals(team.teamName) : team.teamName != null) {
+            return false;
+        }
+
+        return userList != null ? userList.equals(team.userList) : team.userList == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = teamName != null ? teamName.hashCode() : 0;
+        result = 31 * result + (userList != null ? userList.hashCode() : 0);
+        return result;
     }
 }

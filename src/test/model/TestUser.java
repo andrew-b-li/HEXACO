@@ -60,7 +60,7 @@ public class TestUser {
         testUser.addAssessment(testAssessment1);
         testUser.addAssessment(testAssessment2);
         String actualString = testUser.toString();
-        String expectedString = "Default Test User: H:1 E:1 X:1 A:1 C:1 O:1, H:2 E:2 X:2 A:2 C:2 O:2";
+        String expectedString = "Default Test User: H:1 E:1 X:1 A:1 C:1 O:1\nH:2 E:2 X:2 A:2 C:2 O:2";
         assertEquals(expectedString, actualString);
     }
 

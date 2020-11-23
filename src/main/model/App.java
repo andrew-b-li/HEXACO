@@ -4,24 +4,37 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * Represents an App with a list of Teams.
  */
 public class App {
     private ArrayList<Team> teamList;
+    private HashSet<User> generalUserSet;
 
     public App() {
         teamList = new ArrayList<>();
+        generalUserSet = new HashSet<>();
     }
 
     public void addTeam(Team team) {
         teamList.add(team);
     }
 
+    public HashSet<User> getGeneralUserSet() {
+        return generalUserSet;
+    }
+
+    public void addGeneralUser(User user) {
+        generalUserSet.add(user);
+    }
+
     public ArrayList<Team> getTeamList() {
         return teamList;
     }
+
 
     //Effects: If a team name is already used by a Team in the list of Teams, return that Team. Otherwise, return a
     //          new Team with the given team name.

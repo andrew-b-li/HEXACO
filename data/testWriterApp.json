@@ -15,40 +15,27 @@
     },
     {
         "Team Name": "Test Team 2",
-        "Users": [
-            {
-                "User Name": "Test User 2",
-                "Assessments": [
-                    {
-                        "Conscientiousness": 2,
-                        "Emotionality": 2,
-                        "Honesty-Humility": 2,
-                        "Extraversion": 2,
-                        "Openness to Experience": 2,
-                        "Agreeableness": 2
-                    },
-                    {
-                        "Conscientiousness": 3,
-                        "Emotionality": 3,
-                        "Honesty-Humility": 3,
-                        "Extraversion": 3,
-                        "Openness to Experience": 3,
-                        "Agreeableness": 3
-                    }
-                ]
-            },
-            {
-                "User Name": "Test User 3",
-                "Assessments": [{
-                    "Conscientiousness": 4,
-                    "Emotionality": 4,
-                    "Honesty-Humility": 4,
-                    "Extraversion": 4,
-                    "Openness to Experience": 4,
-                    "Agreeableness": 4
-                }]
-            }
-        ]
+        "Users": [{
+            "User Name": "Test User 2",
+            "Assessments": [
+                {
+                    "Conscientiousness": 2,
+                    "Emotionality": 2,
+                    "Honesty-Humility": 2,
+                    "Extraversion": 2,
+                    "Openness to Experience": 2,
+                    "Agreeableness": 2
+                },
+                {
+                    "Conscientiousness": 3,
+                    "Emotionality": 3,
+                    "Honesty-Humility": 3,
+                    "Extraversion": 3,
+                    "Openness to Experience": 3,
+                    "Agreeableness": 3
+                }
+            ]
+        }]
     },
     {
         "Team Name": "Test Team 3",

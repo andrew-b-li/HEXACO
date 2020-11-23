@@ -88,7 +88,7 @@ public class PersonalityApp {
     //          If requested, runs a personality assessment and associates it with the requested user.
     //          Prompts for another username.
     public String displayUserAndAssessment(Team currentTeam, String userName) {
-        User currentUser = currentTeam.userExists(userName);
+        User currentUser = currentTeam.userExists(userName, yourApp);
         System.out.println("\nTeam member data:");
         System.out.println(currentUser.toString());
         System.out.println("\nWould you like to be assessed (y/n)?");

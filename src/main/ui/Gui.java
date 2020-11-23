@@ -373,6 +373,19 @@ public class Gui extends Frame implements ActionListener {
         }
     }
 
+//    //Modifies: This
+//    //Effects: If the New User button is clicked, creates a new User with the name entered into the text field.
+//    //      Adds the new User to the list of Users and displays the Assessments page
+//    public void chooseNewUserName(JComponent theSource) {
+//        if (theSource.equals(enterNewUserName)) {
+//            String userName = newUserName.getText();
+//            newUserName.setText("");
+//            currentUser = currentTeam.userExists(userName);
+//            textAssessments.setText("Current User: \n" + currentUser.toString());
+//            cl.show(panelContainer, "4");
+//        }
+//    }
+
     //Modifies: This
     //Effects: If the New User button is clicked, creates a new User with the name entered into the text field.
     //      Adds the new User to the list of Users and displays the Assessments page
@@ -380,7 +393,9 @@ public class Gui extends Frame implements ActionListener {
         if (theSource.equals(enterNewUserName)) {
             String userName = newUserName.getText();
             newUserName.setText("");
-            currentUser = currentTeam.userExists(userName);
+
+            currentUser = currentTeam.userExists(userName, yourApp);
+
             textAssessments.setText("Current User: \n" + currentUser.toString());
             cl.show(panelContainer, "4");
         }
@@ -415,6 +430,13 @@ public class Gui extends Frame implements ActionListener {
             cl.show(panelContainer, "2");
             setupTeamButtonsPanel();
             playCrowdSound("Cheer");
+
+            for (Team team : yourApp.getTeamList()) {
+                for (User user : team.getUserList()) {
+                    yourApp.addGeneralUser(user);
+                }
+            }
+
         }
     }
 

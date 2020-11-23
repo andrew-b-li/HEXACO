@@ -28,6 +28,7 @@ class JsonReaderTest {
     Assessment testAssessment3 = new Assessment(3, 3, 3, 3, 3, 3);
     Team testTeam3 = new Team("Test Team 3");
     User testUser3 = new User("Test User 3");
+    User testUser4 = new User("Test User 4");
     Assessment testAssessment4 = new Assessment(4, 4, 4, 4, 4, 4);
 
 
@@ -43,7 +44,7 @@ class JsonReaderTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyApp() {
         JsonReader reader = new JsonReader("./data/EmptyApp.json");
         try {
             App actualApp = reader.read();
@@ -55,7 +56,7 @@ class JsonReaderTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralApp() {
         JsonReader reader = new JsonReader("./data/testReaderApp.json");
         try {
             App actualApp = reader.read();
@@ -69,8 +70,8 @@ class JsonReaderTest {
             this.testTeam2.addUser(this.testUser3);
             this.testUser2.addAssessment(this.testAssessment2);
             this.testUser2.addAssessment(this.testAssessment3);
-            this.testTeam3.addUser(this.testUser3);
-            this.testUser3.addAssessment(this.testAssessment4);
+            this.testTeam3.addUser(this.testUser4);
+            this.testUser4.addAssessment(this.testAssessment4);
             assertEquals(expectedApp.toString(), actualApp.toString());
         } catch (IOException e) {
             fail("Couldn't read from file");

@@ -34,3 +34,6 @@ hope to connect my prior interests with computer science.
 ## Phase 3 User Stories
 -As a user, I want to be able to remove a member from a team (Done)
 -As a user, I want to be able to do above stories using a graphical user interface (Done)
+
+## Phase 4 User Stories (Phase 4: Task 2)
+-Implemented a bi-directional association between Teams and Users

@@ -14,6 +14,7 @@ public class TestTeam {
     User user2 = new User("User 2");
     String defaultTestTeam = "Default Test Team";
     Team testTeam = new Team(defaultTestTeam);
+    App testApp = new App();
 
     @Test
     void testSetTeamName(){
@@ -74,13 +75,13 @@ public class TestTeam {
     void testUserExistsDoesExist(){
         testTeam.addUser(user1);
         String expectedUserName = "User 1";
-        assertEquals(user1, testTeam.userExists(expectedUserName));
+        assertEquals(user1, testTeam.userExists(expectedUserName, testApp));
     }
 
     @Test
     void testUserExistsDoesNotExist(){
         testTeam.addUser(user1);
-        User newUser = testTeam.userExists("User 2");
+        User newUser = testTeam.userExists("User 2", testApp);
         assertEquals( "User 2", newUser.getUserName());
     }
 

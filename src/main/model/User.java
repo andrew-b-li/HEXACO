@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class User {
     private String userName;
     private ArrayList<Assessment> assessmentList = new ArrayList<>();
+    private Team team;
 
     //Construct a User
     //Effects: Assigns User a name and list to hold assessments
@@ -27,6 +28,10 @@ public class User {
         return userName;
     }
 
+    public Team getTeam() {
+        return  team;
+    }
+
     public ArrayList<Assessment> getAssessmentList() {
         return assessmentList;
     }
@@ -36,6 +41,20 @@ public class User {
     public void addAssessment(Assessment assessment) {
         this.assessmentList.add(assessment);
     }
+
+    //Modifies: this
+    //Effects: adds a Team to the User
+    public void addTeam(Team team) {
+        if (this.team != null) {
+            if (!this.team.equals(team)) {
+                this.team.removeUser(this);
+                this.team = null;
+            }
+        }
+        this.team = team;
+        team.addUser(this);
+    }
+
 
     //Effects: Returns a String with the user's name and assessments
     @Override
@@ -80,4 +99,22 @@ public class User {
         assessmentList.clear();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        return userName != null ? userName.equals(user.userName) : user.userName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return userName != null ? userName.hashCode() : 0;
+    }
 }
