@@ -29,7 +29,7 @@ public class User {
     }
 
     public Team getTeam() {
-        return  team;
+        return team;
     }
 
     public ArrayList<Assessment> getAssessmentList() {
@@ -96,6 +96,15 @@ public class User {
     //Effects: Clears assessmentList
     public void clearAssessments() {
         assessmentList.clear();
+    }
+
+    //Modifies: this
+    //Effects: removes a Team from the User
+    public void removeTeam(Team team) {
+        if (this.team.equals(team)) {
+            this.team = null;
+            team.removeUser(this);
+        }
     }
 
     @Override

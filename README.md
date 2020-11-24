@@ -36,4 +36,33 @@ hope to connect my prior interests with computer science.
 -As a user, I want to be able to do above stories using a graphical user interface (Done)
 
 ## Phase 4 User Stories (Phase 4: Task 2)
--Implemented a bi-directional association between Teams and Users
+-Implemented a bi-directional association between Teams and Users (Done)
+-Each User can be associated with just one Team
+
+-When attempting to add a new User to a Team, check to see if an equal User is already in that Team
+-If so, access the existing Team's data
+
+-If Team does not already have an equal user, check to see if an equal User exists within the App (in other Teams)
+-If the User already exists in a different Team, remove the User from the Team and add it to the requested Team
+
+-If the User does not exist within any Teams, add the new User to the requested Team
+
+-Users with the same userName are considered equal
+
+-Team.userExists: Used to identify whether a User already exists within a Team
+        - as well as whether a User already exists in other Teams within the overall App
+        - Returns a reference to the desired User
+        
+-Team.addUser: Checks if a User has already been added to a Team
+        - if not, adds the User to the Team
+        - calls User.addToTeam to add the Team to the User
+        
+-Team.removeUser: If the Team contains the User, removes the User from the Team
+        - calls User.removeTeam to remove the Team from the User
+
+-User.addToTeam: Checks if a Team has already been associated with a User
+        - if not, adds the Team to the User
+        - calls Team.addUser to add the User to the Team
+        
+-User.removeTeam: If the User is associated with the Team, removes the Team from a User
+        - calls Team.removeUser to remove the User from the Team        
