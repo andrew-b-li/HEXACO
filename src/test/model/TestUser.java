@@ -112,4 +112,12 @@ public class TestUser {
         testTeam1.addUser(testUser);
         assertEquals(testTeam1, testUser.getTeam());
     }
+
+    @Test
+    void testRemoveTeam(){
+        testTeam1.addUser(testUser);
+        assertTrue(testTeam1.getUserList().contains(testUser));
+        testUser.removeTeam(testTeam1);
+        assertFalse(testTeam1.getUserList().contains(testUser));
+    }
 }

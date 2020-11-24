@@ -43,7 +43,7 @@ public class User {
     }
 
     //Modifies: this
-    //Effects: adds a Team to the User
+    //Effects: adds a Team to the User, removing the previous Team if there was one
     public void addToTeam(Team team) {
         if (this.team != null) {
             if (!this.team.equals(team)) {
@@ -99,14 +99,17 @@ public class User {
     }
 
     //Modifies: this
-    //Effects: removes a Team from the User
+    //Effects: removes a Team from the User - calls Team.removeUser to remove the User from the Team
     public void removeTeam(Team team) {
-        if (this.team.equals(team)) {
-            this.team = null;
-            team.removeUser(this);
+        if (this.team != null) {
+            if (this.team.equals(team)) {
+                this.team = null;
+                team.removeUser(this);
+            }
         }
     }
 
+    //Effects: Determines whether two User objects are equal (based on userName)
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -121,6 +124,7 @@ public class User {
         return userName != null ? userName.equals(user.userName) : user.userName == null;
     }
 
+    //Effects: Generates hash code for a user (based on userName)
     @Override
     public int hashCode() {
         return userName != null ? userName.hashCode() : 0;

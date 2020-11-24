@@ -32,7 +32,8 @@ public class Team {
     }
 
     //Modifies: this
-    //Effects: adds a User to the list of Users
+    //Effects: If a userList does not already include a User, adds the User to the list of Users
+    //calls addToTeam to add the Team to the User
     public void addUser(User user) {
         if (!this.userList.contains(user)) {
             this.userList.add(user);
@@ -41,7 +42,8 @@ public class Team {
     }
 
     //Modifies: this
-    //Effects: removes a User from the list of Users
+    //Effects: If userList contains a User, removes the User from the list of Users
+    //calls removeTeam to remove the Team from the User
     public void removeUser(User user) {
         if (this.userList.contains(user)) {
             this.userList.remove(user);
@@ -49,25 +51,9 @@ public class Team {
         }
     }
 
-//    //Effects: If a username is already used by a User in the list of Users, return that user. Otherwise, return a
-//    //          new user with the given username.
-//    public User userExists(String userName) {
-//        boolean userExists = false;
-//        User currentUser = new User(userName);
-//        for (User user: this.getUserList()) {
-//            if (userName.equals(user.getUserName())) {
-//                currentUser = user;
-//                userExists = true;
-//            }
-//        }
-//        if (!userExists) {
-//            this.addUser(currentUser);
-//        }
-//        return currentUser;
-//    }
-
-    //Effects: If a username is already used by a User in the list of Users, return that user. Otherwise, return a
-    //          new user with the given username.
+    //Effects: If a username is already used by a User in the list of Users, return that user.
+    //Else, if a username is already used by a User in a different Team, move the User into the current list of users.
+    //If none of the above are true, return a new user with the given username and add it to the Team
     public User userExists(String userName, App yourApp) {
         boolean userExistsInTeam = false;
         User currentUser = new User(userName);
@@ -135,6 +121,7 @@ public class Team {
         userList.clear();
     }
 
+    //Effects: Determines whether two Teams objects are equal (based on teamName)
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -143,12 +130,11 @@ public class Team {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Team team = (Team) o;
-
         return teamName != null ? teamName.equals(team.teamName) : team.teamName == null;
     }
 
+    //Effects: Generates hash code for a Team (based on teamName)
     @Override
     public int hashCode() {
         return teamName != null ? teamName.hashCode() : 0;
