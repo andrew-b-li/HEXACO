@@ -130,5 +130,7 @@ public class TestTeam {
     @Test
     public void testHashCode() {
         assertEquals(testTeam1.hashCode(), testTeam4.hashCode());
+        testTeam1.setTeamName(null);
+        assertEquals(0, testTeam1.hashCode());
     }
 }

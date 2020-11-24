@@ -44,7 +44,7 @@ public class User {
 
     //Modifies: this
     //Effects: adds a Team to the User
-    public void addTeam(Team team) {
+    public void addToTeam(Team team) {
         if (this.team != null) {
             if (!this.team.equals(team)) {
                 this.team.removeUser(this);

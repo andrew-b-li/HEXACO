@@ -36,7 +36,7 @@ public class Team {
     public void addUser(User user) {
         if (!this.userList.contains(user)) {
             this.userList.add(user);
-            user.addTeam(this);
+            user.addToTeam(this);
         }
     }
 

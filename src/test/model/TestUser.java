@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /*
  * Unit tests for the User class.
@@ -80,9 +79,19 @@ public class TestUser {
     @Test
     public void testHashCode() {
         assertEquals(testUser.hashCode(), testUser1.hashCode());
+        assertEquals(testUser.hashCode(), testUser.hashCode());
         assertFalse(testUser.equals(testUser2));
         assertFalse(testUser.equals(null));
 
+        testUser1.setUserName(null);
+        assertEquals(0, testUser1.hashCode());
+    }
+
+    @Test
+    void testAddTeamAlreadyAdded(){
+        testTeam1.addUser(testUser);
+        testTeam1.addUser(testUser);
+        assertTrue(testTeam1.getUserList().contains(testUser));
     }
 
     @Test
