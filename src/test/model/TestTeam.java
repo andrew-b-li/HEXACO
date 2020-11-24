@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 /*
  * Unit tests for the Team class.
@@ -113,9 +115,6 @@ public class TestTeam {
         testTeam2.addUser(user1);
         assertFalse(testTeam1.getUserList().contains(user1));
         assertTrue(testTeam2.getUserList().contains(user1));
-    }
-
-    private void assertTrue(boolean contains) {
     }
 
 
