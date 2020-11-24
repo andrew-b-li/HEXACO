@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /*
@@ -86,5 +85,14 @@ public class TestApp {
     void testToStringNoTeams() {
         App testApp = new App();
         assertEquals("", testApp.toString());
+    }
+
+    @Test
+    void testAddGeneralUser() {
+        App testApp = new App();
+        testApp.addGeneralUser(testUser1);
+        assertTrue(testApp.getGeneralUserSet().contains(testUser1));
+        assertEquals(1, testApp.getGeneralUserSet().size());
+
     }
 }

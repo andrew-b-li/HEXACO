@@ -55,7 +55,6 @@ public class User {
         team.addUser(this);
     }
 
-
     //Effects: Returns a String with the user's name and assessments
     @Override
     public String toString() {

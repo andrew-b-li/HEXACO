@@ -75,10 +75,15 @@ public class Team {
             }
         }
         if (!userExistsInTeam) {
+            boolean userExistsInGeneral = false;
             for (User user: yourApp.getGeneralUserSet()) {
                 if (currentUser.equals((user))) {
                     currentUser = user;
+                    userExistsInGeneral = true;
                 }
+            }
+            if (!userExistsInGeneral) {
+                yourApp.addGeneralUser(currentUser);
             }
             this.addUser(currentUser);
         }
@@ -138,17 +143,11 @@ public class Team {
 
         Team team = (Team) o;
 
-        if (teamName != null ? !teamName.equals(team.teamName) : team.teamName != null) {
-            return false;
-        }
-
-        return userList != null ? userList.equals(team.userList) : team.userList == null;
+        return teamName != null ? teamName.equals(team.teamName) : team.teamName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = teamName != null ? teamName.hashCode() : 0;
-        result = 31 * result + (userList != null ? userList.hashCode() : 0);
-        return result;
+        return teamName != null ? teamName.hashCode() : 0;
     }
 }

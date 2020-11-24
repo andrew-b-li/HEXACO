@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /*
  * Unit tests for the Team class.
@@ -13,76 +14,105 @@ public class TestTeam {
     User user1 = new User("User 1");
     User user2 = new User("User 2");
     String defaultTestTeam = "Default Test Team";
-    Team testTeam = new Team(defaultTestTeam);
+    Team testTeam1 = new Team(defaultTestTeam);
+    Team testTeam2 = new Team("Test Team 2");
+    Team testTeam3 = new Team("Test Team 3");
+    Team testTeam4 = new Team("Default Test Team");
+
     App testApp = new App();
 
     @Test
     void testSetTeamName(){
-        testTeam.setTeamName("Changed Test Team");
-        String actualTeamName = testTeam.getTeamName();
+        testTeam1.setTeamName("Changed Test Team");
+        String actualTeamName = testTeam1.getTeamName();
         assertEquals("Changed Test Team", actualTeamName);
     }
 
     @Test
     void testGetTeamName(){
-        String actualTeamName = testTeam.getTeamName();
+        String actualTeamName = testTeam1.getTeamName();
         assertEquals("Default Test Team", actualTeamName);
     }
 
     @Test
     void testAddUser(){
-        testTeam.addUser(user1);
-        ArrayList<User> actualUserList = testTeam.getUserList();
+        testTeam1.addUser(user1);
+        ArrayList<User> actualUserList = testTeam1.getUserList();
         User actualUser = actualUserList.get(0);
         assertEquals(user1, actualUser);
     }
 
     @Test
     void testRemoveUser(){
-        testTeam.addUser(user1);
-        testTeam.addUser(user2);
-        testTeam.removeUser(user2);
-        ArrayList<User> actualUserList = testTeam.getUserList();
+        testTeam1.addUser(user1);
+        testTeam1.addUser(user2);
+        testTeam1.removeUser(user2);
+        ArrayList<User> actualUserList = testTeam1.getUserList();
         User actualUser = actualUserList.get(0);
         assertEquals(user1, actualUser);
     }
 
     @Test
     void testToStringNoUsers() {
-        String actualString = testTeam.toString();
+        String actualString = testTeam1.toString();
         String expectedString = "Default Test Team:";
         assertEquals(expectedString, actualString);
     }
 
     @Test
     void testToStringOneUser() {
-        testTeam.addUser(user1);
-        String actualString = testTeam.toString();
+        testTeam1.addUser(user1);
+        String actualString = testTeam1.toString();
         String expectedString = "Default Test Team: User 1";
         assertEquals(expectedString, actualString);
     }
 
     @Test
     void testToStringTwoUsers() {
-        testTeam.addUser(user1);
-        testTeam.addUser(user2);
-        String actualString = testTeam.toString();
+        testTeam1.addUser(user1);
+        testTeam1.addUser(user2);
+        String actualString = testTeam1.toString();
         String expectedString = "Default Test Team: User 1, User 2";
         assertEquals(expectedString, actualString);
     }
 
     @Test
     void testUserExistsDoesExist(){
-        testTeam.addUser(user1);
+        testApp.addTeam(testTeam1);
+        testTeam1.addUser(user1);
+        testApp.addGeneralUser(user1);
         String expectedUserName = "User 1";
-        assertEquals(user1, testTeam.userExists(expectedUserName, testApp));
+        assertEquals(user1, testTeam1.userExists(expectedUserName, testApp));
     }
 
     @Test
     void testUserExistsDoesNotExist(){
-        testTeam.addUser(user1);
-        User newUser = testTeam.userExists("User 2", testApp);
-        assertEquals( "User 2", newUser.getUserName());
+        testApp.addTeam(testTeam1);
+        testTeam1.addUser(user1);
+        testApp.addGeneralUser(user1);
+        assertEquals(user2, testTeam1.userExists("User 2", testApp));
     }
 
+    @Test
+    void testUserNotExistTeamDoesExistGeneral(){
+        testApp.addTeam(testTeam1);
+        testTeam1.addUser(user1);
+        testApp.addGeneralUser(user1);
+        testApp.addGeneralUser(user2);
+        assertEquals(user2, testTeam1.userExists("User 2", testApp));
+    }
+
+    @Test
+    public void testEquals() {
+        assertEquals(testTeam1, testTeam1);
+        assertEquals(testTeam1, testTeam4);
+        assertFalse(testTeam1.equals(testTeam2));
+        assertFalse(testTeam1.equals(null));
+        assertFalse(testTeam1.equals(testApp));
+    }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(testTeam1.hashCode(), testTeam4.hashCode());
+    }
 }

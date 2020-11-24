@@ -5,12 +5,16 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /*
  * Unit tests for the User class.
  */
 public class TestUser {
     User testUser = new User("Default Test User");
+    User testUser1 = new User("Default Test User");
+    User testUser2 = new User("Test User 2");
+    Team testTeam1 = new Team("Test Team 1");
     String defaultTestUser = "Default Test User";
 
     @Test
@@ -63,5 +67,26 @@ public class TestUser {
         String expectedString = "Default Test User: H:1 E:1 X:1 A:1 C:1 O:1\nH:2 E:2 X:2 A:2 C:2 O:2";
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void testEquals() {
+        assertEquals(testUser, testUser1);
+        assertEquals(testUser, testUser);
+        assertFalse(testUser.equals(testUser2));
+        assertFalse(testUser.equals(null));
+        assertFalse(testUser.equals(testTeam1));
+    }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(testUser.hashCode(), testUser1.hashCode());
+    }
+
+    @Test
+    public void testGetTeam() {
+        testTeam1.addUser(testUser);
+        assertEquals(testTeam1, testUser.getTeam());
+    }
+
 
 }
