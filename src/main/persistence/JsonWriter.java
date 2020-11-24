@@ -2,7 +2,6 @@ package persistence;
 
 import model.App;
 import org.json.JSONObject;
-import ui.PersonalityApp;
 
 import java.io.File;
 import java.io.FileNotFoundException;

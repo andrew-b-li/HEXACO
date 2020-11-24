@@ -5,13 +5,9 @@ import model.Assessment;
 import model.Team;
 import model.User;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.PersonalityApp;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

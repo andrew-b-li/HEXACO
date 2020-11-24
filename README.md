@@ -35,7 +35,7 @@ hope to connect my prior interests with computer science.
 -As a user, I want to be able to remove a member from a team (Done)
 -As a user, I want to be able to do above stories using a graphical user interface (Done)
 
-## Phase 4 User Stories (Phase 4: Task 2)
+## Phase 4: Task 2
 -Implemented a bi-directional association between Teams and Users (Done)
 -Each User can be associated with just one Team
 
@@ -65,4 +65,15 @@ hope to connect my prior interests with computer science.
         - calls Team.addUser to add the User to the Team
         
 -User.removeTeam: If the User is associated with the Team, removes the Team from a User
-        - calls Team.removeUser to remove the User from the Team        
+        - calls Team.removeUser to remove the User from the Team 
+        
+## Phase 4: Task 3
+-Overall, the program design is not too bad
+-There is limited duplicate code
+-Each class handles one responsibility - good cohesion
+-Coupling may be an issue, since the Gui, JsonReader, and JsonWriter classes have a lot of different dependencies
+-However, no classes share code or implementation details
+-Some refactoring could be done to remove the association from Gui to User. Gui already has access to an App,
+        allowing access to all Team objects, and access to all User objects. 
+        Removing this association will remove unnecessary coupling.
+-Readability could also be improved in places (such as the toString methods). Could extract methods to simplify understanding.

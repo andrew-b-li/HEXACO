@@ -117,6 +117,8 @@ public class TestUser {
     void testRemoveTeam(){
         testTeam1.addUser(testUser);
         assertTrue(testTeam1.getUserList().contains(testUser));
+        testUser.removeTeam(testTeam2);
+        assertTrue(testTeam1.getUserList().contains(testUser));
         testUser.removeTeam(testTeam1);
         assertFalse(testTeam1.getUserList().contains(testUser));
     }

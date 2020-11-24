@@ -17,7 +17,7 @@ import java.util.*;
  * Represents the personality test app.
  * Allows users to create teams, users, and assessments.
  */
-public class PersonalityApp {
+public class Console {
     private static final String JSON_STORE = "./data/App.json";
     private App yourApp;
     private Scanner keyboard;
@@ -26,7 +26,7 @@ public class PersonalityApp {
     private JsonReader jsonReader;
 
     //EFFECTS: Displays introduction and list of current teams then starts the rest of the program
-    public PersonalityApp() {
+    public Console() {
         keyboard = new Scanner(System.in);
 
         jsonWriter = new JsonWriter(JSON_STORE);
