@@ -14,6 +14,7 @@ public class TestUser {
     User testUser1 = new User("Default Test User");
     User testUser2 = new User("Test User 2");
     Team testTeam1 = new Team("Test Team 1");
+    Team testTeam2 = new Team("Test Team 2");
     String defaultTestUser = "Default Test User";
 
     @Test
@@ -74,6 +75,8 @@ public class TestUser {
         assertFalse(testUser.equals(testUser2));
         assertFalse(testUser.equals(null));
         assertFalse(testUser.equals(testTeam1));
+        testUser1.setUserName(null);
+        assertFalse(testUser1.equals(testUser));
     }
 
     @Test
@@ -82,7 +85,6 @@ public class TestUser {
         assertEquals(testUser.hashCode(), testUser.hashCode());
         assertFalse(testUser.equals(testUser2));
         assertFalse(testUser.equals(null));
-
         testUser1.setUserName(null);
         assertEquals(0, testUser1.hashCode());
     }
@@ -92,6 +94,15 @@ public class TestUser {
         testTeam1.addUser(testUser);
         testTeam1.addUser(testUser);
         assertTrue(testTeam1.getUserList().contains(testUser));
+        testUser.addToTeam(testTeam1);
+        assertTrue(testTeam1.getUserList().contains(testUser));
+    }
+
+    @Test
+    void testAddTeamNotAlreadyAdded(){
+        testTeam1.addUser(testUser);
+        testUser.addToTeam(testTeam2);
+        assertTrue(testTeam2.getUserList().contains(testUser));
     }
 
     @Test
