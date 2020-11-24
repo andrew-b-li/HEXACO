@@ -96,11 +96,28 @@ public class TestTeam {
     @Test
     void testUserNotExistTeamDoesExistGeneral(){
         testApp.addTeam(testTeam1);
+        testApp.addTeam(testTeam2);
         testTeam1.addUser(user1);
+        testTeam2.addUser(user2);
         testApp.addGeneralUser(user1);
         testApp.addGeneralUser(user2);
         assertEquals(user2, testTeam1.userExists("User 2", testApp));
     }
+
+    @Test
+    void testSwitchTeam(){
+        testApp.addTeam(testTeam1);
+        testApp.addTeam(testTeam2);
+        testTeam1.addUser(user1);
+        testApp.addGeneralUser(user1);
+        testTeam2.addUser(user1);
+        assertFalse(testTeam1.getUserList().contains(user1));
+        assertTrue(testTeam2.getUserList().contains(user1));
+    }
+
+    private void assertTrue(boolean contains) {
+    }
+
 
     @Test
     public void testEquals() {

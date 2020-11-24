@@ -80,6 +80,9 @@ public class TestUser {
     @Test
     public void testHashCode() {
         assertEquals(testUser.hashCode(), testUser1.hashCode());
+        assertFalse(testUser.equals(testUser2));
+        assertFalse(testUser.equals(null));
+
     }
 
     @Test
@@ -87,6 +90,4 @@ public class TestUser {
         testTeam1.addUser(testUser);
         assertEquals(testTeam1, testUser.getTeam());
     }
-
-
 }

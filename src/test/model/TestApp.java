@@ -93,6 +93,5 @@ public class TestApp {
         testApp.addGeneralUser(testUser1);
         assertTrue(testApp.getGeneralUserSet().contains(testUser1));
         assertEquals(1, testApp.getGeneralUserSet().size());
-
     }
 }
