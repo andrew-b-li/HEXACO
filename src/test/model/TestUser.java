@@ -77,6 +77,8 @@ public class TestUser {
         assertFalse(testUser.equals(testTeam1));
         testUser1.setUserName(null);
         assertFalse(testUser1.equals(testUser));
+        testUser.setUserName(null);
+        assertTrue(testUser1.equals(testUser));
     }
 
     @Test

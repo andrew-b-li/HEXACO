@@ -117,7 +117,6 @@ public class TestTeam {
         assertTrue(testTeam2.getUserList().contains(user1));
     }
 
-
     @Test
     public void testEquals() {
         assertEquals(testTeam1, testTeam1);
@@ -125,6 +124,10 @@ public class TestTeam {
         assertFalse(testTeam1.equals(testTeam2));
         assertFalse(testTeam1.equals(null));
         assertFalse(testTeam1.equals(testApp));
+        testTeam1.setTeamName(null);
+        assertFalse(testTeam1.equals(testTeam2));
+        testTeam2.setTeamName(null);
+        assertTrue(testTeam1.equals(testTeam2));
     }
 
     @Test
